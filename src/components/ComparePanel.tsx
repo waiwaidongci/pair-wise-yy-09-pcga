@@ -1,9 +1,9 @@
 import { For, Show, createMemo, createSignal } from "solid-js";
 import { diffThemes } from "../utils/exporters";
-import { useTokenStore } from "../stores/tokenStore";
+import { useWorkspace } from "../collab";
 
 export default function ComparePanel() {
-  const store = useTokenStore();
+  const store = useWorkspace();
   const [beforeId, setBeforeId] = createSignal(store.snapshots()[0]?.id ?? "");
   const [afterId, setAfterId] = createSignal("current");
   const before = createMemo(() => store.snapshots().find((item) => item.id === beforeId())?.theme);
@@ -18,15 +18,15 @@ export default function ComparePanel() {
             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">基准快照</p>
             <select class="mt-2 min-w-64 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" value={beforeId()} onChange={(event) => setBeforeId(event.currentTarget.value)}>
               <option value="">请选择快照</option>
-              <For each={store.snapshots()}>{(snapshot) => <option value={snapshot.id}>{snapshot.label} · {snapshot.createdAt}</option>}</For>
+              <For each={store.snapshots()}>{(snapshot) => <option value={snapshot.id}>{snapshot.label} · r{snapshot.revision ?? 0} · {snapshot.createdAt}</option>}</For>
             </select>
           </div>
           <div class="pb-3 text-xl text-slate-300">→</div>
           <div>
             <p class="text-xs font-bold uppercase tracking-wider text-slate-400">对比目标</p>
             <select class="mt-2 min-w-64 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" value={afterId()} onChange={(event) => setAfterId(event.currentTarget.value)}>
-              <option value="current">当前编辑主题 · {store.activeTheme().name}</option>
-              <For each={store.snapshots()}>{(snapshot) => <option value={snapshot.id}>{snapshot.label} · {snapshot.createdAt}</option>}</For>
+              <option value="current">当前确认版本 r{store.revisionOfActive()} · {store.activeTheme().name}</option>
+              <For each={store.snapshots()}>{(snapshot) => <option value={snapshot.id}>{snapshot.label} · r{snapshot.revision ?? 0} · {snapshot.createdAt}</option>}</For>
             </select>
           </div>
           <div class="ml-auto rounded-lg bg-slate-50 px-4 py-3">

@@ -17,6 +17,8 @@ export interface Snapshot {
   id: string;
   label: string;
   createdAt: string;
+  /** 快照所依据的确认修订号；v1 数据升级而来的快照记为 0。 */
+  revision?: number;
   theme: Theme;
 }
 

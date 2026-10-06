@@ -1,10 +1,10 @@
 import { For, Show, createMemo } from "solid-js";
 import { Tabs } from "@kobalte/core/tabs";
 import { alpha, contrastGrade, contrastRatio } from "../utils/color";
-import { useTokenStore } from "../stores/tokenStore";
+import { useWorkspace } from "../collab";
 
 export default function PreviewPanel() {
-  const store = useTokenStore();
+  const store = useWorkspace();
   const value = (id: string, fallback: string) => {
     for (const tokens of Object.values(store.activeTheme().tokens)) {
       const found = tokens.find((token) => token.id === id);
@@ -33,7 +33,7 @@ export default function PreviewPanel() {
       <div class="flex items-center justify-between border-b border-slate-200 px-4 py-3">
         <div>
           <h2 class="text-sm font-bold text-slate-800">组件预览</h2>
-          <p class="text-xs text-slate-400">当前主题 · {store.activeTheme().name}</p>
+          <p class="text-xs text-slate-400">确认版本 r{store.revisionOfActive()} · {store.activeTheme().name}（未裁决改动不会出现在这里）</p>
         </div>
         <div class={`rounded-full px-2.5 py-1 text-xs font-bold ${ratio() >= 4.5 ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}`}>
           正文对比度 {ratio().toFixed(2)} · {contrastGrade(ratio())}

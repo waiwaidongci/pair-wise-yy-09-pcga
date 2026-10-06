@@ -1,11 +1,11 @@
-import { For, createSignal } from "solid-js";
+import { createSignal } from "solid-js";
 import { Select } from "@kobalte/core/select";
-import { useTokenStore } from "../stores/tokenStore";
+import { useWorkspace } from "../collab";
 import { downloadText, parseImportedTheme, toCssVariables, toSassVariables, toStyleDictionaryJson } from "../utils/exporters";
 import type { Theme } from "../types/tokens";
 
 export default function ThemeToolbar() {
-  const store = useTokenStore();
+  const store = useWorkspace();
   const [format, setFormat] = createSignal("json");
   const [importOpen, setImportOpen] = createSignal(false);
   const [importText, setImportText] = createSignal("");
