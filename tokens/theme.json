@@ -1,0 +1,36 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "value": "#356ae6",
+        "type": "color"
+      }
+    },
+    "surface": {
+      "default": {
+        "value": "#ffffff",
+        "type": "color"
+      }
+    }
+  },
+  "space": {
+    "4": {
+      "value": "16px",
+      "type": "dimension"
+    }
+  },
+  "radius": {
+    "md": {
+      "value": "8px",
+      "type": "dimension"
+    }
+  },
+  "motion": {
+    "duration": {
+      "base": {
+        "value": "220ms",
+        "type": "time"
+      }
+    }
+  }
+}

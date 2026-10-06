@@ -1,0 +1,11 @@
+{
+  "projectId": "pair-wise-yy-09",
+  "projectName": "Token Forge 设计令牌工作台",
+  "category": "设计系统",
+  "businessDomain": "研发工具",
+  "projectForm": "完整项目",
+  "codeScope": "frontend",
+  "languages": "SolidJS, TypeScript, Kobalte, Tailwind, Style Dictionary, Solid Router, Vite",
+  "summary": "集中管理颜色、字号、间距等设计令牌，支持多主题对比、对比度检查与 JSON/CSS/Sass 导出。",
+  "containerized": false
+}

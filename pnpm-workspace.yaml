@@ -1,0 +1,7 @@
+allowBuilds:
+  "@bundled-es-modules/glob": true
+  esbuild: true
+  style-dictionary: true
+
+overrides:
+  rollup: "npm:@rollup/wasm-node@^4.64.0"
